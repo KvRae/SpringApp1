@@ -1,8 +1,18 @@
 package com.example.springapp1.entity;
 
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Date;
 
 import javax.persistence.*;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 
 @Entity
 @Table(name= "contrat" )
@@ -25,66 +35,69 @@ public class Contrat {
     @Column(name= "archive" , nullable=false)
     private Boolean archive ;
 
-    public Contrat() {
-    }
+    @ManyToOne
+    private Etudiant etudiant;
 
-    public Contrat(int idContrat, Date dateDebutContrat, Date dateFinContrat, Specialite specialite, Boolean archive) {
-        this.idContrat = idContrat;
-        this.dateDebutContrat = dateDebutContrat;
-        this.dateFinContrat = dateFinContrat;
-        this.specialite = specialite;
-        this.archive = archive;
-    }
-
-    public int getIdContrat() {
-        return idContrat;
-    }
-
-    public void setIdContrat(int idContrat) {
-        this.idContrat = idContrat;
-    }
-
-    public Date getDateDebutContrat() {
-        return dateDebutContrat;
-    }
-
-    public void setDateDebutContrat(Date dateDebutContrat) {
-        this.dateDebutContrat = dateDebutContrat;
-    }
-
-    public Date getDateFinContrat() {
-        return dateFinContrat;
-    }
-
-    public void setDateFinContrat(Date dateFinContrat) {
-        this.dateFinContrat = dateFinContrat;
-    }
-
-    public Specialite getSpecialite() {
-        return specialite;
-    }
-
-    public void setSpecialite(Specialite specialite) {
-        this.specialite = specialite;
-    }
-
-    public Boolean getArchive() {
-        return archive;
-    }
-
-    public void setArchive(Boolean archive) {
-        this.archive = archive;
-    }
-
-    @Override
-    public String toString() {
-        return "Contrat{" +
-                "idContrat=" + idContrat +
-                ", dateDebutContrat=" + dateDebutContrat +
-                ", dateFinContrat=" + dateFinContrat +
-                ", specialite=" + specialite +
-                ", archive=" + archive +
-                '}';
-    }
+//    public Contrat() {
+//    }
+//
+//    public Contrat(int idContrat, Date dateDebutContrat, Date dateFinContrat, Specialite specialite, Boolean archive) {
+//        this.idContrat = idContrat;
+//        this.dateDebutContrat = dateDebutContrat;
+//        this.dateFinContrat = dateFinContrat;
+//        this.specialite = specialite;
+//        this.archive = archive;
+//    }
+//
+//    public int getIdContrat() {
+//        return idContrat;
+//    }
+//
+//    public void setIdContrat(int idContrat) {
+//        this.idContrat = idContrat;
+//    }
+//
+//    public Date getDateDebutContrat() {
+//        return dateDebutContrat;
+//    }
+//
+//    public void setDateDebutContrat(Date dateDebutContrat) {
+//        this.dateDebutContrat = dateDebutContrat;
+//    }
+//
+//    public Date getDateFinContrat() {
+//        return dateFinContrat;
+//    }
+//
+//    public void setDateFinContrat(Date dateFinContrat) {
+//        this.dateFinContrat = dateFinContrat;
+//    }
+//
+//    public Specialite getSpecialite() {
+//        return specialite;
+//    }
+//
+//    public void setSpecialite(Specialite specialite) {
+//        this.specialite = specialite;
+//    }
+//
+//    public Boolean getArchive() {
+//        return archive;
+//    }
+//
+//    public void setArchive(Boolean archive) {
+//        this.archive = archive;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "Contrat{" +
+//                "idContrat=" + idContrat +
+//                ", dateDebutContrat=" + dateDebutContrat +
+//                ", dateFinContrat=" + dateFinContrat +
+//                ", specialite=" + specialite +
+//                ", archive=" + archive +
+//                '}';
+//    }
 }
 

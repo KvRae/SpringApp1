@@ -1,5 +1,15 @@
 package com.example.springapp1.entity;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
+
 import javax.persistence.*;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 
 @Entity
 @Table(name= "detail_equipe" )
@@ -12,35 +22,40 @@ public class DetailEquipe {
     @Column(name= "name" , length=128, nullable=false)
     private String thematique ;
 
-    public DetailEquipe() {
-    }
+    @OneToOne(mappedBy = "detailEquipe")
+    private Equipe equipe;
 
-    public DetailEquipe(int salle, String thematique) {
-        this.salle = salle;
-        this.thematique = thematique;
-    }
 
-    public int getSalle() {
-        return salle;
-    }
-
-    public void setSalle(int salle) {
-        this.salle = salle;
-    }
-
-    public String getThematique() {
-        return thematique;
-    }
-
-    public void setThematique(String thematique) {
-        this.thematique = thematique;
-    }
-
-    @Override
-    public String toString() {
-        return "DetailEquipe{" +
-                "salle=" + salle +
-                ", thematique='" + thematique + '\'' +
-                '}';
-    }
+//
+//    public DetailEquipe() {
+//    }
+//
+//    public DetailEquipe(int salle, String thematique) {
+//        this.salle = salle;
+//        this.thematique = thematique;
+//    }
+//
+//    public int getSalle() {
+//        return salle;
+//    }
+//
+//    public void setSalle(int salle) {
+//        this.salle = salle;
+//    }
+//
+//    public String getThematique() {
+//        return thematique;
+//    }
+//
+//    public void setThematique(String thematique) {
+//        this.thematique = thematique;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "DetailEquipe{" +
+//                "salle=" + salle +
+//                ", thematique='" + thematique + '\'' +
+//                '}';
+//    }
 }
