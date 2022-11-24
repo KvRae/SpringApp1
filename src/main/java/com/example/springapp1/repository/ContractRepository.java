@@ -1,7 +1,6 @@
 package com.example.springapp1.repository;
 
 import com.example.springapp1.entity.Contrat;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

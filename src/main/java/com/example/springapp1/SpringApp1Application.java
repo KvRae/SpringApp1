@@ -1,8 +1,6 @@
 package com.example.springapp1;
 
 import com.example.springapp1.entity.Universite;
-
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,7 +12,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@Slf4j
 public class SpringApp1Application {
 
     public static void main(String[] args) {
@@ -26,11 +23,11 @@ public class SpringApp1Application {
         SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-
-        Universite universite = new Universite();
-        universite.setNomUniv("Université de Paris");
-
-        session.save(universite);
+//
+//        Universite universite = new Universite();
+//        universite.setNomUniv("Université de Paris");
+//
+//        session.save(universite);
         transaction.commit();
         session.close();
         sessionFactory.close();

@@ -5,9 +5,14 @@ import com.example.springapp1.entity.Contrat;
 import com.example.springapp1.repository.ContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
-@Service
+@RestController
+@RequestMapping("/contracts")
 public class ContractService implements IContractService {
     @Autowired
     private ContractRepository contractRepository;
