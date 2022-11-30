@@ -1,14 +1,14 @@
 package com.example.springapp1.controller;
 
-import com.example.springapp1.entity.Contract;
-import com.example.springapp1.service.IContractService;
+import com.example.springapp1.entity.Contrat;
+import com.example.springapp1.service.IContratService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequestMapping("/contract")
 @RestController
-public class ContractController implements IContractService {
+public class ContractController implements IContratService {
 
     @GetMapping("/retrieve-all")
     @ResponseBody
@@ -44,17 +44,17 @@ public class ContractController implements IContractService {
 
 
     @Override
-    public void addContrat(Contract contrat) {
+    public void addContrat(Contrat contrat) {
 
     }
 
     @Override
-    public void updateContrat(Long contratId, Contract contrat) {
+    public void updateContrat(Long contratId, Contrat contrat) {
 
     }
 
     @Override
-    public void deleteContrat(Contract contrat) {
+    public void deleteContrat(Contrat contrat) {
 
     }
 
@@ -64,17 +64,17 @@ public class ContractController implements IContractService {
     }
 
     @Override
-    public List<Contract> getAllContrats() {
+    public List<Contrat> getAllContrats() {
         return null;
     }
 
     @Override
-    public Contract getContratById(Long contratId) {
+    public Contrat getContratById(Long contratId) {
         return null;
     }
 
     @Override
-    public Contract affectContratToEtudiant(Contract contrat, String nomEtudiant, String prenomEtudiant) {
+    public Contrat affectContratToEtudiant(Contrat contrat, String nomEtudiant, String prenomEtudiant) {
         return null;
     }
 }

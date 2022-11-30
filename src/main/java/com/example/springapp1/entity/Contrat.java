@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Contract implements Serializable {
+public class Contrat implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

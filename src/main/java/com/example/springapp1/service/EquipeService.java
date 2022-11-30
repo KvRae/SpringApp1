@@ -20,31 +20,44 @@ public class EquipeService implements IEquipeService{
 
     @Override
     public void addEquipe(Equipe equipe) {
-
+        // TODO checking equipe !existence before inserting
+        equipeRepository.save(equipe);
     }
 
     @Override
     public void updateEquipe(Long equipeId, Equipe equipe) {
-
+        // TODO checking equipe existence before updating
+        Equipe equipeToUpdate = getEquipeById(equipeId);
+        if (equipeToUpdate != null){
+            if (equipe != null && !Objects.equals(equipeToUpdate, equipe)){
+                equipeToUpdate.setNomEquipe(equipe.getNomEquipe());
+                equipeToUpdate.setNiveau(equipe.getNiveau());
+                equipeRepository.save(equipeToUpdate);
+            }
+        }
+        else throw new IllegalStateException("Equipe with id " + equipeId + " does not exist");
     }
 
     @Override
     public void deleteEquipe(Equipe equipe) {
-
+        // TODO checking equipe existence before deleting
+        equipeRepository.delete(equipe);
     }
 
     @Override
     public void deleteEquipeById(Long equipeId) {
-
+        // TODO checking equipe existence before deleting
+        equipeRepository.deleteById(equipeId);
     }
 
     @Override
     public List<Equipe> getAllEquipes() {
-        return null;
+        return equipeRepository.findAll();
     }
 
     @Override
     public Equipe getEquipeById(Long equipeId) {
-        return null;
+        return equipeRepository.findById(equipeId)
+                .orElseThrow(() -> new IllegalStateException("Equipe with id" + equipeId + " does not exist"));
     }
 }

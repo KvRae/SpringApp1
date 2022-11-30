@@ -23,7 +23,7 @@ public class OpenApiConfig {
     @Bean
     public GroupedOpenApi productPublicApi() {
         return GroupedOpenApi.builder()
-                .group("Only Contract Management API")
+                .group("Only Contrat Management API")
                 .pathsToMatch("/contract/**")
                 .pathsToExclude("**")
                 .build();

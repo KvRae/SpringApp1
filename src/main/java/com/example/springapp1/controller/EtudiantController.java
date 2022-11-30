@@ -1,41 +1,86 @@
 package com.example.springapp1.controller;
 
 
+import com.example.springapp1.entity.Contrat;
+import com.example.springapp1.entity.Departement;
 import com.example.springapp1.entity.Etudiant;
 import com.example.springapp1.service.IEtudiantService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequestMapping("/etudiant")
+
 @RestController
-public class EtudiantController implements IEtudiantService {
+@CrossOrigin
+public class EtudiantController {
+    private final IEtudiantService iEtudiantService;
 
-    @Override
-    public int addEtudiant(int id, String nom, String prenom, int idEquipe) {
-        return 0;
+    @Autowired
+    public EtudiantController(IEtudiantService iEtudiantService) {
+        this.iEtudiantService = iEtudiantService;
     }
 
-    @Override
-    public boolean updateEtudiant(int id, String nom, String prenom, int idEquipe) {
-        return false;
+    @GetMapping("/getEtudiants")
+    List<Etudiant> getAllEtudiants(){
+        return iEtudiantService.getAllEtudiants();
     }
 
-    @Override
-    public boolean deleteEtudiant(int id) {
-        return false;
+    @GetMapping("/getEtudiant/{etudiantId}")
+    Etudiant getEtudiantById(@PathVariable("etudiantId") Long etudiantId){
+        return  iEtudiantService.getEtudiantById(etudiantId);
     }
 
-    @Override
-    public List<Etudiant> getAllEtudiants() {
-        return null;
+    @PostMapping("/addEtudiant")
+    void addEtudiant(@RequestBody Etudiant etudiant){
+        iEtudiantService.addEtudiant(etudiant);
     }
 
-    @Override
-    public Etudiant getEtudiantById(int id) {
-        return null;
+    @DeleteMapping("/deleteEtudiant")
+    void deleteEtudiant(@RequestBody Etudiant etudiant){
+        iEtudiantService.deleteEtudiant(etudiant);
     }
+
+    @DeleteMapping("/deleteEtudiant/{etudiantId}")
+    void deleteEtudiant(@PathVariable("etudiantId") Long etudiantId){
+        iEtudiantService.deleteEtudiantById(etudiantId);
+    }
+
+    @PutMapping("/updateEtudiant/{etudiantId}")
+    void updateEtudiant(@PathVariable("etudiantId") Long etudiantId, @RequestBody Etudiant etudiant){
+        iEtudiantService.updateEtudiant(etudiantId, etudiant);
+    }
+
+    @GetMapping("/getEtudiantsByDepartement/{departementId}")
+    List<Etudiant> getEtudiantsByDepartement(@PathVariable("departementId") Long departementId){
+        return iEtudiantService.getEtudiantsByDepartement(departementId);
+    }
+
+    @PutMapping("/assignEtudiantToDepartement/{etudiantId}/{departementId}")
+    public void assignEtudiantToDepartement(@PathVariable("etudiantId") Long etudiantId,
+                                            @PathVariable("departementId") Long departementId){
+        iEtudiantService.assignEtudiantToDepartement(etudiantId,departementId);
+    }
+
+    @PostMapping("/addAndAssignEtudiantToEquipeAndContract/{idContrat}/{idEquipe}")
+    Etudiant addAndAssignEtudiantToEquipeAndContract(@RequestBody Etudiant etudiant,
+                                                     @PathVariable("idContrat") Long idContrat,
+                                                     @PathVariable("idEquipe") Long idEquipe
+    )
+    {
+        return iEtudiantService.addAndAssignEtudiantToEquipeAndContract(etudiant,idContrat,idEquipe);
+    }
+
+    @GetMapping("/ShowDepartementEtudiantDetails/{departementId}")
+    Departement ShowDepartementEtudiantDetails (@PathVariable("departementId") Long departementId)
+    {
+        return iEtudiantService.ShowDepartementEtudiantDetails(departementId);
+    }
+    @GetMapping("/getAllContratByIdEtudiant/{idEtudiant}")
+    List<Contrat> getAllContratByIdEtudiant(@PathVariable("idEtudiant") Long idEtudiant)
+    {
+        return iEtudiantService.getAllContratByIdEtudiant(idEtudiant);
+    }
+
 }
