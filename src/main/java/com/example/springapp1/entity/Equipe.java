@@ -1,78 +1,31 @@
 package com.example.springapp1.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+public class Equipe implements Serializable {
 
-@Entity
-@Table(name= "equipe" )
-public class Equipe {
     @Id
-    @Column(name= "id" )
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEquipe;
-
-    @Column(name= "name" , length=128, nullable=false)
-    private String nomEquip;
-
-    @Column(name= "niveau" , length=128, nullable=false)
+    @Column(name = "idEquipe")
+    private Long idEquipe;
+    private String nomEquipe;
+    @Enumerated(EnumType.STRING)
     private Niveau niveau;
-
-    @OneToOne
-    private DetailEquipe detailEquipe ;
-
-    @ManyToMany (mappedBy = "equipes")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "equipes")
+    @JsonIgnore
     private Set<Etudiant> etudiants;
-//
-//    public Equipe() {
-//    }
-//
-//    public Equipe(int idEquipe, String nomEquip, Niveau niveau) {
-//        this.idEquipe = idEquipe;
-//        this.nomEquip = nomEquip;
-//        this.niveau = niveau;
-//    }
-//
-//    public int getIdEquipe() {
-//        return idEquipe;
-//    }
-//
-//    public void setIdEquipe(int idEquipe) {
-//        this.idEquipe = idEquipe;
-//    }
-//
-//    public String getNomEquip() {
-//        return nomEquip;
-//    }
-//
-//    public void setNomEquip(String nomEquip) {
-//        this.nomEquip = nomEquip;
-//    }
-//
-//    public Niveau getNiveau() {
-//        return niveau;
-//    }
-//
-//    public void setNiveau(Niveau niveau) {
-//        this.niveau = niveau;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Equipe{" +
-//                "idEquipe=" + idEquipe +
-//                ", nomEquip='" + nomEquip + '\'' +
-//                ", niveau=" + niveau +
-//                '}';
-//    }
+    @OneToOne(mappedBy = "equipe")
+    private DetailEquipe detailEquipe;
+
 }
